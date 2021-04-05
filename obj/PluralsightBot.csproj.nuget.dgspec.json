@@ -51,6 +51,10 @@
               "target": "Package",
               "version": "[4.12.1, )"
             },
+            "Microsoft.Bot.Builder.Dialogs": {
+              "target": "Package",
+              "version": "[4.12.2, )"
+            },
             "Microsoft.Bot.Builder.Integration.AspNet.Core": {
               "target": "Package",
               "version": "[4.12.1, )"
