@@ -6,6 +6,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Azure.Blobs;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,7 +41,11 @@ namespace PluralsightBot
         }
 
         public void ConfigureState(IServiceCollection services) {
-            services.AddSingleton<IStorage, MemoryStorage>();
+            //services.AddSingleton<IStorage, MemoryStorage>();
+            var storageAccount = "";
+            var storageContainer = "mystatedata";
+            services.AddSingleton<IStorage>(new BlobsStorage(storageAccount, storageContainer));
+
             services.AddSingleton<UserState>();
             services.AddSingleton<ConversationState>();
             services.AddSingleton<StateService>();

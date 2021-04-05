@@ -28,7 +28,6 @@ C:\Users\TKU\source\repos\PluralsightBot\PluralsightBot\bin\Debug\netcoreapp3.1\
 C:\Users\TKU\source\repos\PluralsightBot\PluralsightBot\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\TKU\source\repos\PluralsightBot\PluralsightBot\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\TKU\source\repos\PluralsightBot\PluralsightBot\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\TKU\source\repos\PluralsightBot\PluralsightBot\obj\Debug\netcoreapp3.1\PluralsightBot.csprojAssemblyReference.cache
 C:\Users\TKU\source\repos\PluralsightBot\PluralsightBot\obj\Debug\netcoreapp3.1\PluralsightBot.AssemblyInfoInputs.cache
 C:\Users\TKU\source\repos\PluralsightBot\PluralsightBot\obj\Debug\netcoreapp3.1\PluralsightBot.AssemblyInfo.cs
 C:\Users\TKU\source\repos\PluralsightBot\PluralsightBot\obj\Debug\netcoreapp3.1\PluralsightBot.csproj.CoreCompileInputs.cache
