@@ -24,7 +24,7 @@ namespace PluralsightBot.Bots {
                 await turnContext.SendActivityAsync(MessageFactory.Text($"Hi {userProfile.Name}. How can I help you today?"), cancellationToken);
             }
             else {
-                if (conversationData.PromptedUserForName) {
+                if (conversationData.PromptedUserForName) {                    
                     userProfile.Name = turnContext.Activity.Text?.Trim();
                     await turnContext.SendActivityAsync(MessageFactory.Text($"Thanks {userProfile.Name}. How can I help you today?"), cancellationToken);
                     conversationData.PromptedUserForName = false;
