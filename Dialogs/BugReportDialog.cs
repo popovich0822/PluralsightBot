@@ -109,8 +109,8 @@ namespace PluralsightBot.Dialogs {
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Bug: {userProfile.Bug}"), cancellationToken);
 
             await _stateService.UserProfileAccessor.SetAsync(stepContext.Context, userProfile);
-            
-            return await stepContext.EndDialogAsync(cancellationToken);
+
+            return await stepContext.EndDialogAsync();
         }
 
         private Task<bool> CallbackTimeValidatorAsync(PromptValidatorContext<IList<DateTimeResolution>> promptContext, CancellationToken cancellationToken) {
