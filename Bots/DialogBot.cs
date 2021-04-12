@@ -31,7 +31,21 @@ namespace PluralsightBot.Bots {
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken) {
             _logger.LogInformation("Running dialog with Message Activity.");
 
-            await _dialog.Run(turnContext, _stateService.DialogStateAccessor, cancellationToken);
+            try {
+                await _dialog.Run(turnContext, _stateService.DialogStateAccessor, cancellationToken);
+                //var dialogSet = new DialogSet(_stateService.DialogStateAccessor);
+                //dialogSet.Add(_dialog);
+            
+                //var dialogContext = await dialogSet.CreateContextAsync(turnContext, cancellationToken);
+                //var results = await dialogContext.ContinueDialogAsync(cancellationToken);
+
+                //if (results.Status == DialogTurnStatus.Empty) {
+                //    await dialogContext.BeginDialogAsync(_dialog.Id, null, cancellationToken);
+                //}
+            }
+            catch (Exception ex) {
+                var m = ex.Message;
+            }
         }
     }
 }
