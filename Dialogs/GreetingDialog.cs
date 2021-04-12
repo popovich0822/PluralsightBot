@@ -24,7 +24,7 @@ namespace PluralsightBot.Dialogs {
             };
 
             AddDialog(new WaterfallDialog($"{nameof(GreetingDialog)}.mainFlow", waterfallSteps));
-            AddDialog(new TextPrompt($"{nameof(GreetingDialog)}.mainFlow"));
+            AddDialog(new TextPrompt($"{nameof(GreetingDialog)}.name"));
 
             InitialDialogId = $"{nameof(GreetingDialog)}.mainFlow";
         }
