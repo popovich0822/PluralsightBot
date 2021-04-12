@@ -19,21 +19,20 @@ namespace PluralsightBot.Dialogs {
 
         private void InitializeWaterfallDialog() {
             var waterfallSteps = new WaterfallStep[] {
-                InitialStepAsync,
-                FinalStepAsync
+                step1, step2
             };
 
-            AddDialog(new WaterfallDialog($"{nameof(GreetingDialog)}.mainFlow", waterfallSteps));
-            AddDialog(new TextPrompt($"{nameof(GreetingDialog)}.name"));
+            AddDialog(new WaterfallDialog("gd.mainFlow", waterfallSteps));
+            AddDialog(new TextPrompt("gd.name"));
 
-            InitialDialogId = $"{nameof(GreetingDialog)}.mainFlow";
+            InitialDialogId = "gd.mainFlow";
         }
 
-        private async Task<DialogTurnResult> InitialStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken) {
+        private async Task<DialogTurnResult> step1(WaterfallStepContext stepContext, CancellationToken cancellationToken) {
             var userProfile = await _stateService.UserProfileAccessor.GetAsync(stepContext.Context, () => new UserProfile());
 
             if (string.IsNullOrEmpty(userProfile.Name)) {
-                var dialogId     = $"{nameof(GreetingDialog)}.name";
+                var dialogId     = "gd.name";
                 var prompt       = MessageFactory.Text("What is your name?");
                 var promptOptions = new PromptOptions() { Prompt = prompt };
 
@@ -44,7 +43,7 @@ namespace PluralsightBot.Dialogs {
             }
         }
 
-        private async Task<DialogTurnResult> FinalStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken) {
+        private async Task<DialogTurnResult> step2(WaterfallStepContext stepContext, CancellationToken cancellationToken) {
             var userProfile = await _stateService.UserProfileAccessor.GetAsync(stepContext.Context, () => new UserProfile());
 
             if (string.IsNullOrEmpty(userProfile.Name)) {

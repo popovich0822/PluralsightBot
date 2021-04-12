@@ -39,14 +39,14 @@ namespace PluralsightBot
             ConfigureDialogs(services);
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
-            services.AddTransient<IBot, DialogBot<MainDialog>>();            
+            services.AddTransient<IBot, DialogBot<GreetingDialog>>();            
         }
 
         public void ConfigureState(IServiceCollection services) {
-            //services.AddSingleton<IStorage, MemoryStorage>();
-            var storageAccount = "DefaultEndpointsProtocol=https;AccountName=botstate20210406;AccountKey=uuVKoUw8ClWeOh6Ro+1b3ShCbu+6LaIMkfI38mXF5THKzZUHY/ILpa56qcLTXZqd66qh43ETzpw6YfLWNw6hPw==;EndpointSuffix=core.windows.net";
-            var storageContainer = "mystatedata";
-            services.AddSingleton<IStorage>(new BlobsStorage(storageAccount, storageContainer));
+            services.AddSingleton<IStorage, MemoryStorage>();
+            //var storageAccount = "DefaultEndpointsProtocol=https;AccountName=botstate20210406;AccountKey=uuVKoUw8ClWeOh6Ro+1b3ShCbu+6LaIMkfI38mXF5THKzZUHY/ILpa56qcLTXZqd66qh43ETzpw6YfLWNw6hPw==;EndpointSuffix=core.windows.net";
+            //var storageContainer = "mystatedata";
+            //services.AddSingleton<IStorage>(new BlobsStorage(storageAccount, storageContainer));
 
             services.AddSingleton<UserState>();
             services.AddSingleton<ConversationState>();
@@ -54,7 +54,7 @@ namespace PluralsightBot
         }
 
         public void ConfigureDialogs(IServiceCollection services) {
-            services.AddSingleton<MainDialog>();
+            services.AddSingleton<GreetingDialog>(x => new GreetingDialog("gd.mainFlow", x.GetRequiredService<StateService>()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

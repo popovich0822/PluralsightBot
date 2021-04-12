@@ -6,7 +6,7 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
-using PluralsightBot.Helpers;
+
 using PluralsightBot.Services;
 
 namespace PluralsightBot.Bots {
@@ -30,8 +30,7 @@ namespace PluralsightBot.Bots {
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken) {
             _logger.LogInformation("Running dialog with Message Activity.");
-
-            //await _dialog.Run(turnContext, _stateService.DialogStateAccessor, cancellationToken);
+            
             var dialogSet = new DialogSet(_stateService.DialogStateAccessor);
             dialogSet.Add(_dialog);
 
