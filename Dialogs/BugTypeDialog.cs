@@ -33,16 +33,23 @@ namespace PluralsightBot.Dialogs {
 
         private async Task<DialogTurnResult> InitialStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken) {
             var result = await _botServices.Dispatch.RecognizeAsync(stepContext.Context, cancellationToken);
-            var token = result.Entities.FindTokens("BugType").First();
-            var rgx = new Regex("[^a-zA-Z0-9 - ]");
-            var value = rgx.Replace(token.ToString(), string.Empty).Trim();
 
-            if (Common.BugTypes.Any(s => s.Equals(value, StringComparison.OrdinalIgnoreCase))) {
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Yes! {value} is a Bug Type."), cancellationToken);
+            if (result.Entities != null && result.Entities.Count > 0 && result.Entities.First.ToString() != "\"$instance\": {}") {
+                var token = result.Entities.FindTokens("BugType").First();
+                var rgx = new Regex("[^a-zA-Z0-9 - ]");
+                var value = rgx.Replace(token.ToString(), string.Empty).Trim();
+
+                if (Common.BugTypes.Any(s => s.Equals(value, StringComparison.OrdinalIgnoreCase))) {
+                    await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Yes! {value} is a Bug Type."), cancellationToken);
+                }
+                else {
+                    await stepContext.Context.SendActivityAsync(MessageFactory.Text($"No! {value} is not a Bug Type."), cancellationToken);
+                }
             }
             else {
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"No! {value} is not a Bug Type."), cancellationToken);
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"I can't understand what you are talking, maybe you are quering bug type?"), cancellationToken);
             }
+            
 
             return await stepContext.NextAsync(null, cancellationToken);
 
