@@ -33,7 +33,7 @@ namespace PluralsightBot
 
             // Create the Bot Framework Adapter with error handling enabled.
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
-
+            
             ConfigureState(services);
 
             ConfigureDialogs(services);
@@ -51,6 +51,7 @@ namespace PluralsightBot
             services.AddSingleton<UserState>();
             services.AddSingleton<ConversationState>();
             services.AddSingleton<StateService>();
+            services.AddSingleton<BotServices>();
         }
 
         public void ConfigureDialogs(IServiceCollection services) {

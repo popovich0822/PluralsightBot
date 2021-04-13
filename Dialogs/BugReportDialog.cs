@@ -110,7 +110,7 @@ namespace PluralsightBot.Dialogs {
 
             await _stateService.UserProfileAccessor.SetAsync(stepContext.Context, userProfile);
             
-            return await stepContext.EndDialogAsync(cancellationToken);
+            return await stepContext.EndDialogAsync();
         }
 
         private Task<bool> CallbackTimeValidatorAsync(PromptValidatorContext<IList<DateTimeResolution>> promptContext, CancellationToken cancellationToken) {
